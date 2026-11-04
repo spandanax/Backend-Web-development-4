@@ -7,7 +7,12 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use((error, req, res, next) => {
   console.error(error.message);
-  res.status(500).json({ error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } });
+  res.status(500).json({
+    error: {
+      code: 'INTERNAL_SERVER_ERROR',
+      message: 'An unexpected error occurred'
+    }
+  });
 });
 
 const port = Number(process.env.PORT || 3000);
