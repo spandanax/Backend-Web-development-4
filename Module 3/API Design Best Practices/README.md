@@ -42,6 +42,14 @@ npm start
 - If client sends a very large `limit`, backend should still protect itself.
 - If one route is cleaned up but nearby routes still follow old pattern, contract is still weak.
 
+## Public Contract
+
+- `GET /posts?page=1&limit=2` lists posts in `{ data, meta }`; `limit` is capped at 100.
+- `GET /posts/:id` fetches one post in `{ data }`.
+- `POST /posts` creates a post with `201` and `{ data }`.
+- `POST /posts/:id/likes` creates a like with `201` and `{ data }`.
+- Errors use `{ error: { code, message } }`. `GET /explode` is a demo-only internal failure route and returns a safe `500` response.
+
 ## Good Audit Questions
 
 1. What is resource here?
